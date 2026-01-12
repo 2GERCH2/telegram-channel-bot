@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: telegram-channel-bot
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python bot.py
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: SOURCE_CHANNEL_ID
+        sync: false
+      - key: TARGET_CHANNEL_ID
+        sync: false
