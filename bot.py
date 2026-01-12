@@ -47,14 +47,14 @@ try:
 except ImportError:
     print("⚠️ Flask не установлен, запускаю без веб-сервера")
 
-# === ТЕЛЕГРАМ БОТ (python-telegram-bot 20.x) ===
+# === ТЕЛЕГРАМ БОТ ===
 async def main():
     try:
         from telegram.ext import Application, MessageHandler, filters
         from telegram import Update
         from telegram.ext import ContextTypes
         
-        print("✅ Использую python-telegram-bot 20.x")
+        print("✅ Использую python-telegram-bot")
         
         async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
             if update.channel_post:
@@ -80,12 +80,14 @@ async def main():
         application.add_handler(MessageHandler(filters.ChatType.CHANNEL, handle_message))
         
         print("✅ Запускаю бота...")
+        await application.initialize()
+        await application.start()
         await application.run_polling(drop_pending_updates=True, timeout=30)
         
     except ImportError as e:
         print(f"❌ Ошибка импорта: {e}")
         print("Убедитесь, что установлены правильные зависимости:")
-        print("pip install python-telegram-bot==20.7 flask==2.3.3")
+        print("pip install python-telegram-bot==21.7 flask==2.3.3")
         sys.exit(1)
     except Exception as e:
         print(f"💥 Критическая ошибка: {e}")
