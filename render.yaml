@@ -2,12 +2,14 @@ services:
   - type: web
     name: telegram-channel-bot
     env: python
+    region: oregon  # Или frankfurt, singapore
+    plan: free
     buildCommand: pip install -r requirements.txt
     startCommand: python bot.py
     envVars:
       - key: BOT_TOKEN
-        sync: false
+        value: 8323210618:AAHzr0pwt_5ed1EF38a6ZtSj4dYpVQuioEg
       - key: SOURCE_CHANNEL_ID
-        sync: false
+        value: -1003206369286
       - key: TARGET_CHANNEL_ID
-        sync: false
+        value: -1003238172094
